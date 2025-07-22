@@ -5,10 +5,10 @@ A simple NLP web app that summarizes long texts using Hugging Face Transformers 
 https://ai-engineer-researcher-journey-7t78jvmbrjazj7mw8ryrtz.streamlit.app/
 
 # Tech Used
--Python
--Streamlit
--Transformers (Bart model)
--Torch
+- Python
+- Streamlit
+- Transformers (Bart model)
+- Torch
 
 # Run Locally
 
@@ -20,11 +20,11 @@ streamlit run text_summarizer_app.py
 ```
 
 # Learnings
--Using pre-trained NLP models
--Deploying apps on Streamlit Cloud
--Building and deploying real-world projects
+- Using pre-trained NLP models
+- Deploying apps on Streamlit Cloud
+- Building and deploying real-world projects
 
 # Next Steps
--Handle longer text inputs
--Add more model options
+- Handle longer text inputs
+- Add more model options
 
