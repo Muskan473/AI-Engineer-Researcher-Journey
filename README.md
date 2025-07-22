@@ -5,7 +5,7 @@ A simple NLP web app that summarizes long texts using Hugging Face Transformers 
 https://ai-engineer-researcher-journey-7t78jvmbrjazj7mw8ryrtz.streamlit.app/
 
 # Tech Used
-Python
+Python\n
  Streamlit
  Transformers (Bart model)
  Torch
