@@ -6,9 +6,9 @@ https://ai-engineer-researcher-journey-7t78jvmbrjazj7mw8ryrtz.streamlit.app/
 
 # Tech Used
 Python
-Streamlit
-Transformers (Bart model)
-Torch
+ Streamlit
+ Transformers (Bart model)
+ Torch
 
 # Run Locally
 
