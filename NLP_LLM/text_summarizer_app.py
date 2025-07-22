@@ -4,41 +4,23 @@ from transformers import pipeline
 st.title("Text Summarizer App")
 st.write("Enter text below to summarize:")
 
-summarizer = pipeline("summarization")
+summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
 
 user_input = st.text_area("Enter text to summarize:", height=300)
 
-def summarize_long_text(text):
-    # Break long text into smaller chunks (500 words per chunk approx)
-    max_chunk = 500
-    sentences = text.split('. ')
-    current_chunk = ""
-    chunks = []
-    
-    for sentence in sentences:
-        if len(current_chunk) + len(sentence.split()) <= max_chunk:
-            current_chunk += sentence + ". "
-        else:
-            chunks.append(current_chunk.strip())
-            current_chunk = sentence + ". "
-    
-    if current_chunk:
-        chunks.append(current_chunk.strip())
-    
-    summary = ""
-    for chunk in chunks:
-        res = summarizer(chunk, max_length=150, min_length=30, do_sample=False)
-        summary += res[0]['summary_text'] + " "
-    
-    return summary
-
 if st.button("Summarize"):
     if len(user_input.strip()) > 0:
-        try:
-            summary = summarize_long_text(user_input)
-            st.subheader("Summary:")
-            st.write(summary)
-        except Exception as e:
-            st.error(f"Error: {e}")
+        # Approximate token count (1 word ~ 1.3 tokens, rough estimate)
+        token_length = len(user_input.split()) * 1.3
+        token_length = int(token_length)
+
+        # Set max_length dynamically but keep it reasonable
+        max_len = min(150, int(token_length * 0.6))  # Take 60% of the input size
+        min_len = max(20, int(max_len * 0.5))  # Minimum 50% of summary length
+
+        summary = summarizer(user_input, max_length=max_len, min_length=min_len, do_sample=False)
+        
+        st.subheader("Summary:")
+        st.write(summary[0]['summary_text'])
     else:
         st.warning("Please enter some text to summarize.")
